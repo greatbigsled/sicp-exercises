@@ -6,10 +6,13 @@
 ;; how guess changes from one iteration to the next and to stop when the change is a very small fraction of the guess.
 ;; Design a square-root procedure that uses this kind of end test. Does this work better for small and large numbers? 
 
-(define (square-root x guess prev-guess)
+(define (sqrt x)
+  (sqrt-iter x 1.0 0))
+
+(define (sqrt-iter x guess prev-guess)
   (if (is-good-enough guess prev-guess)
       guess
-      (square-root x (improve-guess x guess) guess))
+      (sqrt-iter x (improve-guess x guess) guess))
 )
 
 (define (is-good-enough guess prev-guess)
